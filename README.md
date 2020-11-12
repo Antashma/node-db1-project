@@ -12,11 +12,11 @@
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
+- [x] Create a forked copy of this project.
+- [x] Clone your OWN version of the repository (Not Lambda's by mistake!).
+- [x] Create a new branch: git checkout -b `<firstName-lastName>`.
+- [x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [x] Push commits: git push origin `<firstName-lastName>`.
 
 ### Task 2: Minimum Viable Product
 
@@ -25,12 +25,40 @@ Follow these steps to set up and work on your project:
 Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/trysql.asp?filename=trysql_select_all) using the **Google Chrome (or Chromium if you use Linux) browser** and write _SQL queries_ for the following requirements:
 
 - find all customers with postal code 1010. Returns 3 records.
+```sql
+SELECT * FROM Customers WHERE PostalCode = 1010;
+```
 - find the phone number for the supplier with the id 11. Should be (010) 9984510.
-- list first 10 orders placed, sorted descending by the order date. The order with date 1997-02-12 should be at the top.
-- find all customers that live in London, Madrid, or Brazil. Returns 18 records.
-- add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
-- update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
+```sql
+SELECT phone FROM Suppliers WHERE SupplierID = 11;
+```
 
+- list first 10 orders placed, sorted descending by the order date. The order with date 1997-02-12 should be at the top.
+```sql
+SELECT * FROM Orders ORDER BY OrderDate DESC LIMIT 10
+```
+
+- find all customers that live in London, Madrid, or Brazil. Returns 18 records.
+```sql
+SELECT * FROM [Customers] 
+WHERE City = 'London' 
+OR City = 'Madrid' 
+OR Country = 'Brazil';
+```
+
+- add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
+```sql
+INSERT INTO Customers 
+(CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES 
+('The Shire', "Bilbo Baggins", "1 Hobbit-Hole",  "Bag End", "111", "Middle Earth")
+```
+- update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
+```sql
+UPDATE Customers 
+SET PostalCode = 11122 
+WHERE CustomerName = 'The Shire'
+```
 **Clicking the `Restore Database` button in the page will repopulate the database with the original data and discard all changes you have made**.
 
 ### Write Accounts API
